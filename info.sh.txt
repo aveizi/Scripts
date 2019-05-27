@@ -1,0 +1,77 @@
+ Krijoni nje funksion info.sh i cili afishon si me poshte 
+"Actual Date : date"
+
+"Machine Name : hostname"
+
+"OS Type : OS"
+
+"Kernel version : version"
+
+"User logged in : user"
+
+"Total memory : tot_mem"
+
+"Memory Used : mem_used"
+
+"Memory Free : mem_free"
+
+"Total disk space : tot_disk"
+
+"Used disk space : used_disk"
+
+"Free disk space : free_disk"
+#!/bin/bash
+
+
+info(){
+
+
+data=$(date +%F)
+
+hostname=$(uname -n)
+
+os=$(uname -o)
+
+kernel=$(uname -v)
+
+user=$(whoami)
+
+
+mem_tot=$(free --mega | grep "Mem:" | awk '{ print $2}')
+
+mem_used=$(free --mega | grep "Mem:" | awk '{ print $3}')
+
+mem_free=$(free --mega | grep "Mem:" | awk '{ print $4}')
+
+disk_tot=$(df -h | grep -w "sda1" | awk '{ print $2}')
+
+disk_used=$(df -h | grep -w "sda1" | awk '{ print $3}')
+
+disk_free=$(df -h | grep -w "sda1" | awk '{ print $4}')
+
+
+
+echo "Actual Date :  $data"
+
+echo "MachineName :  $hostname"
+
+echo "OS Type : $os"
+echo "Kernel Version : $kernel"
+
+echo "User logged in : $user"
+
+echo "Total Memory(MB) : $mem_tot"
+
+echo "Memory Used(MB): $mem_used"
+
+echo "Memory free(MB) : $mem_free"
+
+echo "Disk Total : $disk_tot"
+
+echo "Disk Used : $disk_used"
+
+echo "Disk Free : $disk_free"
+
+}
+
+info

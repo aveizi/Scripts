@@ -1,0 +1,51 @@
+1.Shkruani nje shell script check_object.sh i cili duke perdorur nje
+ funksion checkon nje list filesh/direktorish dhe afishon :
+
+ X eshte file
+
+Y eshte direktori
+
+Z eshte file
+
+#!/bin/bash
+
+
+function afisho(){
+
+
+a=0
+
+b=0
+
+
+for i in $@
+
+do
+
+if [ -d $i ]
+
+then
+
+echo "$i eshte directory"
+
+let a=$a+1
+
+else
+
+echo "$i eshte file"
+
+let b=$b+1
+
+fi
+
+done
+
+
+echo "Direktori : $a"
+
+echo "File: $b"
+
+}
+
+
+afisho $@
